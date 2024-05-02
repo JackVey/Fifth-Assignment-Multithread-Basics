@@ -86,16 +86,16 @@ public class MatrixMultiplication {
         for (int i = 0; i < matrix_c.size(); i++) {
             for (int j = 0; j < matrix_c.getFirst().size(); j++) {
                 if (i <= (matrix_A.size()/2) - 1 && j <= (matrix_B.getFirst().size()/2) - 1){
-                    matrix_c.get(i).set(j, BM1.tempMatrixProduct.get(i % 50).get(j));
+                    matrix_c.get(i).set(j, BM1.tempMatrixProduct.get(i % (matrix_A.size()/2)).get(j));
 
                 } else if (i <= (matrix_A.size()/2) - 1 && j >= matrix_B.getFirst().size()/2) {
-                    matrix_c.get(i).set(j, BM2.tempMatrixProduct.get(i).get(j % 50));
+                    matrix_c.get(i).set(j, BM2.tempMatrixProduct.get(i).get(j % (matrix_B.getFirst().size()/2)));
 
                 } else if (i >= matrix_A.size()/2 && j <= (matrix_B.getFirst().size()/2) - 1) {
-                    matrix_c.get(i).set(j, BM3.tempMatrixProduct.get(i % 50).get(j));
+                    matrix_c.get(i).set(j, BM3.tempMatrixProduct.get(i % (matrix_A.size()/2)).get(j));
 
                 } else {
-                    matrix_c.get(i).set(j, BM4.tempMatrixProduct.get(i % 50).get(j % 50));
+                    matrix_c.get(i).set(j, BM4.tempMatrixProduct.get(i % (matrix_A.size()/2)).get(j % (matrix_B.getFirst().size()/2)));
 
                 }
             }
