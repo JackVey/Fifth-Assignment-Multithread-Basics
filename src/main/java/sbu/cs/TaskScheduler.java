@@ -1,6 +1,8 @@
 package sbu.cs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TaskScheduler
@@ -33,6 +35,7 @@ public class TaskScheduler
     public static ArrayList<String> doTasks(ArrayList<Task> tasks)
     {
         ArrayList<String> finishedTasks = new ArrayList<>();
+        tasks = sortTaskArrayList(tasks);
 
         /*
         TODO
@@ -45,7 +48,26 @@ public class TaskScheduler
         return finishedTasks;
     }
 
+    public static ArrayList<Task> sortTaskArrayList(ArrayList<Task> task){
+        ArrayList<Task> tempTask = new ArrayList<>(task);
+        boolean swapped;
+        for (int i = 0; i < tempTask.size() - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < tempTask.size() - i - 1; j++) {
+                if (tempTask.get(j).processingTime < tempTask.get(j + 1).processingTime){
+                    Task temp = tempTask.get(j);
+                    tempTask.set(j, tempTask.get(j + 1));
+                    tempTask.set(j + 1, temp);
+                    swapped = true;
+                }
+            }
+            if (!swapped){
+                break;
+            }
+        }
+        return tempTask;
+    }
     public static void main(String[] args) {
-        // Test your code here
+
     }
 }
