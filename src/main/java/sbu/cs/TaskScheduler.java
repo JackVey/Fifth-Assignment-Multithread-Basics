@@ -1,9 +1,6 @@
 package sbu.cs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class TaskScheduler
 {
@@ -38,12 +35,12 @@ public class TaskScheduler
         ArrayList<String> finishedTasks;
         try {
             finishedTasks = new ArrayList<>();
-            tasks = sortTaskArrayList(tasks);
-            for (int i = 0; i < tasks.size(); i++) {
-                Thread newThread = new Thread(tasks.get(i));
+            ArrayList<Task> tempTasks = new ArrayList<>(sortTaskArrayList(tasks));
+            for (Task tempTask : tempTasks) {
+                Thread newThread = new Thread(tempTask);
                 newThread.start();
                 newThread.join();
-                finishedTasks.add(tasks.get(i).taskName);
+                finishedTasks.add(tempTask.taskName);
             }
 
         } catch (InterruptedException e) {
